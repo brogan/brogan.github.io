@@ -388,6 +388,36 @@ echo "large-file.pdf" >> .gitignore
 git commit -m "Remove large file"
 ```
 
+### Issue: GitHub Actions Workflow Failing (Deprecated Actions)
+
+**Cause:** GitHub periodically deprecates older versions of Actions. You'll see an error like:
+```
+This request has been automatically failed because it uses a deprecated version of `actions/upload-artifact: v3`
+```
+
+**Solution:**
+
+1. Check the Actions tab for the specific error message
+2. Update the action versions in `.github/workflows/deploy.yml`
+
+**Current recommended versions (as of January 2026):**
+```yaml
+- uses: actions/checkout@v4
+- uses: peaceiris/actions-hugo@v3
+- uses: actions/configure-pages@v4
+- uses: actions/upload-pages-artifact@v3
+- uses: actions/deploy-pages@v4
+```
+
+3. Commit and push the updated workflow:
+```bash
+git add .github/workflows/deploy.yml
+git commit -m "Update GitHub Actions to latest versions"
+git push origin main
+```
+
+**Tip:** Check the [GitHub Actions Changelog](https://github.blog/changelog/) periodically for deprecation notices.
+
 ## Best Practices
 
 1. **Commit Often:** Make small, focused commits rather than huge ones
@@ -431,12 +461,63 @@ Thumbs.db
 
 ## GitHub Pages Deployment Settings
 
-### If Using GitHub Actions
+### If Using GitHub Actions (Recommended)
 
 1. Go to your repository on GitHub
 2. Settings → Pages
-3. Source: "GitHub Actions"
-4. Create `.github/workflows/hugo.yaml` (if not exists)
+3. Source: **"GitHub Actions"** (not "Deploy from a branch")
+4. The workflow file is at `.github/workflows/deploy.yml`
+
+**Important workflow requirements:**
+- Must have `concurrency` block for Pages deployments
+- Use `actions/configure-pages` to get the correct base URL
+- Keep action versions up to date (GitHub deprecates old versions)
+
+**Current workflow structure:**
+```yaml
+name: Deploy Hugo site to Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+      - uses: actions/configure-pages@v4
+      - run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/deploy-pages@v4
+```
 
 ### If Using gh-pages Branch
 
