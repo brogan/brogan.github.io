@@ -1,0 +1,16 @@
+# Hugo build output (built by GitHub Actions)
+public/
+
+# OS files
+.DS_Store
+**/.DS_Store
+
+# Hugo resources
+resources/_gen/
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
