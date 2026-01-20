@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sample on Broganiferous</title>
+    <link>http://localhost:1313/tags/sample/</link>
+    <description>Recent content in Sample on Broganiferous</description>
+    <generator>Hugo</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Mon, 25 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/sample/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Example Content</title>
+      <link>http://localhost:1313/posts/2026-08-01_test/</link>
+      <pubDate>Mon, 25 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026-08-01_test/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,71 @@
+{{ define "main" }}
+<content>
+  {{ if .Data.Singular }}
+  <h3 style="margin-bottom:0">Filtering for "{{ .Title }}"</h3>
+  <small>
+    <a href="{{ "posts" | relURL }}">Remove filter</a>
+  </small>
+  {{ end }}
+
+  {{ if not .Data.Singular }}
+  <div style="margin-bottom: 1em;">
+    <small>
+      <strong>Sort by:</strong>
+      <button onclick="sortPosts('date-desc')" id="sort-date-desc" class="sort-btn active">Date (Newest)</button>
+      <button onclick="sortPosts('date-asc')" id="sort-date-asc" class="sort-btn">Date (Oldest)</button>
+      <button onclick="sortPosts('title')" id="sort-title" class="sort-btn">Title</button>
+    </small>
+  </div>
+  {{ end }}
+
+  <ul class="blog-posts" id="post-list">
+    {{ range .Pages }}
+    <li data-date="{{ .Date.Unix }}" data-title="{{ .Title }}" data-tags="{{ delimit (.Params.tags) "," }}">
+      <span>
+        <i>
+          <time datetime='{{ .Date.Format "2006-01-02" }}'>
+            {{ .Date.Format (default "02 Jan, 2006" .Site.Params.dateFormat) }}
+          </time>
+        </i>
+      </span>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </li>
+    {{ else }}
+    <li>
+      No posts yet
+    </li>
+    {{ end }}
+  </ul>
+
+  {{ if not .Data.Singular }}
+  <small>
+    <div>
+      <strong>Filter by tag:</strong>
+      {{ range .Site.Taxonomies.tags }}
+      <a href="{{ .Page.Permalink }}">#{{ .Page.Title }}</a>&nbsp;
+      {{ end }}
+    </div>
+  </small>
+  {{ end }}
+</content>
+
+<style>
+  .sort-btn {
+    background: none;
+    border: none;
+    color: var(--link-color);
+    padding: 0;
+    margin: 0 8px 0 0;
+    font-size: 1em;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .sort-btn:hover {
+    text-decoration: underline;
+  }
+  .sort-btn.active {
+    color: var(--heading-color);
+    font-weight: bold;
+  }
+</style>
+{{ end }}

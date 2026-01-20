@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web-Development on Broganiferous</title>
+    <link>http://localhost:1313/tags/web-development/</link>
+    <description>Recent content in Web-Development on Broganiferous</description>
+    <generator>Hugo</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Thu, 08 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/web-development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Two Justices</title>
+      <link>http://localhost:1313/posts/2026-08-01_twojustices/</link>
+      <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026-08-01_twojustices/</guid>
+      <description>&lt;h2 id=&#34;two-justices&#34;&gt;Two Justices&lt;/h2&gt;&#xA;&lt;p&gt;Justice appears either as a sentimental ideal or or as an awkward paradox.&lt;/p&gt;&#xA;&lt;p&gt;The sentimental notion has an ethical basis.  It insists that things should be one way or another depending upon a set of human ethical values - fairness, equality, etc.&lt;/p&gt;&#xA;&lt;p&gt;The paradoxical conception is less obvious.  It is centrally concerned with how things are rightly composed and happen.  While this can be aligned with the ethical conception, it can also reveal different priorities.  Consider bears.  They eat wild salmon.  Nobody expects a bear to have any ethical regard for a salmon. They eat salmon because they are powerful and the salmon provide sustenance.  This appears as a natural order of justice.  Arguably, the sense of justice here hinges on the issue of ecological composition and balance but we can just as easily acknowledge the harsh justice of bears starving if there are too few salmon to meet their needs.  In this sense, imbalance is also an expression of justice.  There is always the possibility of interpreting any instance of ecological excess as retribution that exists only to return things to proper equilibrium.  But equally, we could regard excess itself as a feature of the just trajectory of things.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

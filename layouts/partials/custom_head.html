@@ -1,0 +1,5 @@
+{{ if eq .Section "posts" }}
+{{ if or .IsHome .IsSection }}
+<script src="/js/blog-sort.js" defer></script>
+{{ end }}
+{{ end }}

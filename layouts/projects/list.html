@@ -1,0 +1,61 @@
+{{ define "main" }}
+<content>
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  <div class="projects-grid">
+    {{ range .Pages }}
+    <div class="project-card">
+      {{ with .Params.thumbnail }}
+      <a href="{{ $.Permalink }}">
+        <img src="{{ . }}" alt="{{ $.Title }}" class="project-thumbnail">
+      </a>
+      {{ end }}
+      <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+      <p>{{ .Summary }}</p>
+      <small>
+        {{ with .Params.tech }}
+        <strong>Tech:</strong> {{ delimit . ", " }}
+        {{ end }}
+      </small>
+    </div>
+    {{ else }}
+    <p>No projects yet.</p>
+    {{ end }}
+  </div>
+</content>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2em;
+    margin: 2em 0;
+  }
+
+  .project-card {
+    border: 1px solid var(--text-color);
+    border-radius: 3px;
+    padding: 1em;
+  }
+
+  .project-card h3 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .project-thumbnail {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+
+  @media (max-width: 600px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{{ end }}

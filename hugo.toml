@@ -1,3 +1,35 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = 'https://brogan.github.io'
+languageCode = 'en-gb'
+title = 'Broganiferous'
+theme = 'hugo-bearblog'
+
+# Enable taxonomies (tags for blog posts)
+[taxonomies]
+  tag = "tags"
+
+# Allow raw HTML in markdown files
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  mainSections = ["posts"]
+  dateFormat = "02 Jan, 2006"
+
+# Menu configuration (navigation bar)
+[menu]
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 2
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 3
